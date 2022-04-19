@@ -104,7 +104,7 @@ class AppWindow(QtWidgets.QMainWindow,Ui_MainWindow): #Test
             S_y_2 = G * T_2 * T_2 * 0.5
             S_y_3 = S_y_1 - S_y_2
 
-            if (S_y_3 >= S) or (S_x_1 > d):
+            if (S_y_3 >= S):
                 self.ball_up.setPixmap(QtGui.QPixmap("Images/Football.jpg"))
                 self.File_Path = os.path.join(os.getcwd(),"Images/missed.mp3")
                 self.playAudioFile()

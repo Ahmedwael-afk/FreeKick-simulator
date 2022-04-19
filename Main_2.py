@@ -23,23 +23,24 @@ G = 9.8
 
 
 
-FORM_CLASS,_ = loadUiType(path.join(path.dirname(_file_), "Gui.ui"))
+FORM_CLASS,_ = loadUiType(path.join(path.dirname(__file__), "Gui.ui"))
 class MainApp(QMainWindow, FORM_CLASS):
-    def _init_(self , parent=None):
+    def __init__(self , parent=None):
         super(MainApp,self)._init_(parent)
         QMainWindow._init_(self)
+        self.setupUi(self)
 
 
-    self.ball_1.setPixmap(QtGui.QPixmap("Images/Football.jpg"))
-    self.goal.setPixmap(QtGui.QPixmap("Images/Goal.jpg"))
-    self.verticalSlider_Dist.valueChanged.connect(self.setDist)
-    self.verticalSlider_Phy.valueChanged.connect(self.setPhy)
-    self.verticalSlider_Theta.valueChanged.connect(self.setTheta)
-    self.verticalSlider_V_int.valueChanged.connect(self.setVelocity)
-    self.pushButton_kick.clicked.connect(self.Goal_or_Not)
-    # self.ball_1.setPixmap(QtGui.QPixmap("Images/Football.jpg"))
-    # self.ball_1.setPixmap(QtGui.QPixmap("Images/Football.jpg"))
-    self.player = QMediaPlayer()
+        self.ball_1.setPixmap(QtGui.QPixmap("Images/Football.jpg"))
+        self.goal.setPixmap(QtGui.QPixmap("Images/Goal.jpg"))
+        self.verticalSlider_Dist.valueChanged.connect(self.setDist)
+        self.verticalSlider_Phy.valueChanged.connect(self.setPhy)
+        self.verticalSlider_Theta.valueChanged.connect(self.setTheta)
+        self.verticalSlider_V_int.valueChanged.connect(self.setVelocity)
+        self.pushButton_kick.clicked.connect(self.Goal_or_Not)
+        # self.ball_1.setPixmap(QtGui.QPixmap("Images/Football.jpg"))
+        # self.ball_1.setPixmap(QtGui.QPixmap("Images/Football.jpg"))
+        self.player = QMediaPlayer()
 
 
     def setDist(self,value_D):
@@ -139,10 +140,10 @@ class MainApp(QMainWindow, FORM_CLASS):
 
 
 
-app = QtCore.QCoreApplication.instance()
-if app is None:
-    app = QtWidgets.QApplication(sys.argv)
-w = AppWindow()
-
-w.show() # Create the widget and show it
-sys.exit(app.exec_()) # Run the app
+def main():
+    app = QApplication(sys.argv)
+    window = MainApp()
+    window.show()
+    app.exec_()
+if __name__ == '_main_':
+    main()
